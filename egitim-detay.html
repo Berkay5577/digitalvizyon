@@ -1340,38 +1340,34 @@
             window.dispatchEvent(new Event('scroll'));
         }
     
-            // Sticky Tab Menu Intersection Observer
+            // Manual Scroll Spy for Sticky Tab Menu
             const sections = document.querySelectorAll('.egitim-section');
             const navLinks = document.querySelectorAll('.tab-link');
 
             if (sections.length > 0 && navLinks.length > 0) {
-                const observerOptions = {
-                    root: null,
-                    rootMargin: '-150px 0px -40% 0px',
-                    threshold: 0
-                };
-
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            // Remove active from all
-                            navLinks.forEach(link => {
-                                link.classList.remove('text-[#234190]', 'border-b-2', 'border-[#234190]', 'font-semibold');
-                                link.classList.add('text-black/50', 'font-medium');
-                            });
-
-                            // Add active to current
-                            const activeId = entry.target.getAttribute('id');
-                            const activeLink = document.querySelector('.tab-link[href="#' + activeId + '"]');
-                            if (activeLink) {
-                                activeLink.classList.add('text-[#234190]', 'border-b-2', 'border-[#234190]', 'font-semibold');
-                                activeLink.classList.remove('text-black/50', 'font-medium');
-                            }
+                window.addEventListener('scroll', () => {
+                    let current = '';
+                    const scrollY = window.pageYOffset;
+                    
+                    sections.forEach(section => {
+                        // Offset by 200px to match the scroll-mt-[190px] and sticky header
+                        const sectionTop = section.offsetTop;
+                        if (scrollY >= sectionTop - 250) {
+                            current = section.getAttribute('id');
                         }
                     });
-                }, observerOptions);
 
-                sections.forEach(section => observer.observe(section));
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-[#234190]', 'border-b-2', 'border-[#234190]', 'font-semibold');
+                        link.classList.add('text-black/50', 'font-medium');
+                        if (current && link.getAttribute('href') === '#' + current) {
+                            link.classList.add('text-[#234190]', 'border-b-2', 'border-[#234190]', 'font-semibold');
+                            link.classList.remove('text-black/50', 'font-medium');
+                        }
+                    });
+                });
+                // Trigger once on load
+                window.dispatchEvent(new Event('scroll'));
             }
 
 
