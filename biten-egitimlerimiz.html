@@ -151,7 +151,7 @@
     <nav id="navbar" class="fixed z-50 top-0 left-0 w-full bg-transparent px-6 py-2.5 flex items-center justify-between shadow-[0_8px_30px_rgb(0,0,0,0.08)] border-b border-black/5 transition-all duration-700 ease-in-out cursor-pointer" style="transform: translateY(0);">
 
     <!-- Gooey Background Container -->
-    <div class="absolute inset-0 w-full h-full pointer-events-none z-[-1]" style="filter: url(#goo);">
+    <div id="gooey-container" class="absolute inset-0 w-full h-full pointer-events-none z-[-1]" style="filter: url(#goo);">
         <div class="absolute inset-0 w-full h-full bg-white/90" id="nav-main-bg"></div>
         <!-- The liquid drop for mega menu -->
         <div id="mega-blob" class="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-10 bg-white/90 rounded-full transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.26,1.55)] opacity-0"></div>
@@ -697,11 +697,19 @@
                     const navMenu = document.getElementById('nav-menu');
                     const navHandle = document.getElementById('nav-handle');
                     const navMainBg = document.getElementById('nav-main-bg');
+                    const gooeyContainer = document.getElementById('gooey-container');
                     
                     if (scrollTop > 100) {
                         if(navMainBg) {
                             navMainBg.classList.add('bg-white/40', 'backdrop-blur-2xl');
                             navMainBg.classList.remove('bg-white', 'bg-white/90');
+                        }
+                        if(megaBlob) {
+                            megaBlob.classList.remove('bg-white/90');
+                            megaBlob.classList.add('bg-white/40', 'backdrop-blur-2xl');
+                        }
+                        if(gooeyContainer) {
+                            gooeyContainer.style.filter = 'none';
                         }
                         navbar.style.transform = 'translateY(-100%)';
                         
@@ -713,6 +721,13 @@
                         if(navMainBg) {
                             navMainBg.classList.remove('bg-white/40', 'backdrop-blur-2xl');
                             navMainBg.classList.add('bg-white/90');
+                        }
+                        if(megaBlob) {
+                            megaBlob.classList.remove('bg-white/40', 'backdrop-blur-2xl');
+                            megaBlob.classList.add('bg-white/90');
+                        }
+                        if(gooeyContainer) {
+                            gooeyContainer.style.filter = 'url(#goo)';
                         }
                         navbar.style.transform = 'translateY(0)';
                         
