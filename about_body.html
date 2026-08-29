@@ -1049,14 +1049,14 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
             navbar.addEventListener('mouseenter', () => {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 if (scrollTop > 100) {
-                    navbar.style.transform = 'translateY(0)';
+                    
                     if(navHandleIcon) navHandleIcon.classList.add('rotate-180');
                 }
             });
             navbar.addEventListener('mouseleave', () => {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 if (scrollTop > 100) {
-                    navbar.style.transform = 'translateY(-100%)';
+                    
                     if(navHandleIcon) navHandleIcon.classList.remove('rotate-180');
                 }
             });
