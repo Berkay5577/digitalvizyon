@@ -138,28 +138,30 @@
             </div>
         </div>
     </div>
-    <nav id="navbar" class="fixed z-50 top-6 left-1/2 -translate-x-1/2 bg-[#111111] rounded-full p-2.5 flex items-center shadow-2xl border border-white/10 transition-all duration-700 ease-in-out overflow-hidden" style="width: max-content;">
+    <nav id="navbar" class="fixed z-50 top-6 left-1/2 w-[95%] max-w-6xl bg-[#111111] rounded-[1.5rem] px-4 py-2 flex items-center justify-between shadow-2xl border border-white/10 transition-all duration-700 ease-in-out cursor-pointer" style="transform: translateX(-50%) translateY(0);">
         
         <!-- Logo Wrapper -->
-        <a href="index.html" id="nav-logo-link" class="relative shrink-0 transition-all duration-700 ease-in-out block h-[3.5rem] md:h-[4rem] w-[12rem] md:w-[15rem] rounded-full overflow-hidden ml-4">
-            <img src="logo.svg" id="nav-logo-img" class="absolute top-0 left-0 h-full w-auto max-w-none transition-all duration-700 ease-in-out transform-gpu origin-left" alt="Logo">
-        </a>
+        <div class="flex-1 flex justify-start pl-2">
+            <a href="index.html" id="nav-logo-link" class="relative block h-[3.5rem] w-[12rem] md:h-[4rem] md:w-[15rem] overflow-hidden shrink-0">
+                <img src="logo.svg" id="nav-logo-img" class="absolute top-0 left-0 h-full w-auto max-w-none transition-all duration-700 ease-in-out filter brightness-0 invert" alt="Logo">
+            </a>
+        </div>
         
-        <!-- Links & CTA Wrapper -->
-        <div id="nav-menu" class="flex items-center gap-10 transition-all duration-700 ease-in-out overflow-hidden" style="max-width: 800px; opacity: 1;">
-            <div class="hidden md:flex items-center gap-10 text-base font-medium text-white/80 px-4 whitespace-nowrap ml-2">
-                <a href="hakkimizda.html" class="hover:text-white transition-colors">Hakkımızda</a>
-                <a href="egitimler.html" class="hover:text-white transition-colors">Eğitimler</a>
-                    <a href="biten-egitimlerimiz.html" class="hover:text-white transition-colors">Biten Eğitimler</a>
-                <a href="blog.html" class="hover:text-white transition-colors">Blog</a>
-            </div>
-            
-            <a href="iletisim.html" class="hidden md:flex px-10 py-4 rounded-full bg-white text-black text-base font-semibold hover:bg-gray-200 transition-colors shrink-0 mr-1 whitespace-nowrap items-center">
+        <!-- Links Wrapper -->
+        <div id="nav-menu" class="hidden lg:flex flex-1 justify-center items-center gap-8 text-[15px] font-medium text-white/80 whitespace-nowrap transition-all duration-700">
+            <a href="hakkimizda.html" class="hover:text-white transition-colors">Hakkımızda</a>
+            <a href="egitimler.html" class="hover:text-white transition-colors">Eğitimler</a>
+            <a href="biten-egitimlerimiz.html" class="hover:text-white transition-colors">Biten Eğitimler</a>
+            <a href="blog.html" class="hover:text-white transition-colors">Blog</a>
+        </div>
+        
+        <!-- CTA Wrapper -->
+        <div class="flex-1 flex justify-end pr-2">
+            <a href="iletisim.html" class="hidden md:flex px-8 py-3.5 rounded-xl bg-white text-black text-[15px] font-bold hover:bg-gray-200 transition-colors shrink-0 whitespace-nowrap items-center">
                 İletişim
             </a>
         </div>
-    
-</nav>
+    </nav>
 
        <!-- FIXED BACKGROUND (Video for the whole page) -->
     <div class="fixed top-0 left-0 w-full h-screen z-0 pointer-events-none overflow-hidden">
@@ -686,28 +688,15 @@
                     const navMenu = document.getElementById('nav-menu');
                     
                     if (scrollTop > 100) {
-                        // Move navbar to left
-                        navbar.classList.remove('left-1/2', '-translate-x-1/2');
-                        navbar.classList.add('left-6', 'translate-x-0');
-                        
-                        // Scrolled: Hide links and button
-                        navMenu.style.maxWidth = '0px';
-                        navMenu.style.opacity = '0';
-                        navMenu.style.gap = '0';
-                        
-                        // Turn logo white
-                        navLogoImg.style.filter = 'brightness(0) invert(1)';
+                        // Scrolled: Glassy and slide up (peek-a-boo)
+                        navbar.classList.remove('top-6', 'bg-[#111111]');
+                        navbar.classList.add('top-0', 'bg-[#111111]/80', 'backdrop-blur-xl');
+                        navbar.style.transform = 'translateX(-50%) translateY(calc(-100% + 12px))';
                     } else {
-                        // Return navbar to center
-                        navbar.classList.add('left-1/2', '-translate-x-1/2');
-                        navbar.classList.remove('left-6', 'translate-x-0');
-                        
                         // Top: Normal full navbar
-                        navMenu.style.maxWidth = '800px';
-                        navMenu.style.opacity = '1';
-                        navMenu.style.gap = '2.5rem'; // gap-10 is 2.5rem
-                        
-                        navLogoImg.style.filter = 'none';
+                        navbar.classList.add('top-6', 'bg-[#111111]');
+                        navbar.classList.remove('top-0', 'bg-[#111111]/80', 'backdrop-blur-xl');
+                        navbar.style.transform = 'translateX(-50%) translateY(0)';
                     }
                     // --- END NAVBAR LOGIC ---
                     
@@ -1119,6 +1108,24 @@
             // Initial call to set correct state on load
             window.dispatchEvent(new Event('scroll'));
         }
-    </script>
+    
+        // Navbar Hover (Peek-a-boo)
+        const navbar = document.getElementById('navbar');
+        if (navbar) {
+            navbar.addEventListener('mouseenter', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > 100) {
+                    navbar.style.transform = 'translateX(-50%) translateY(24px)';
+                }
+            });
+            navbar.addEventListener('mouseleave', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > 100) {
+                    navbar.style.transform = 'translateX(-50%) translateY(calc(-100% + 12px))';
+                }
+            });
+        }
+
+</script>
 </body>
 </html>
