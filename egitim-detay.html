@@ -1351,8 +1351,9 @@
                     
                     sections.forEach(section => {
                         // Offset by 200px to match the scroll-mt-[190px] and sticky header
-                        const sectionTop = section.offsetTop;
-                        if (scrollY >= sectionTop - 250) {
+                        const rect = section.getBoundingClientRect();
+                        // 250px is the trigger line (just below the sticky navs)
+                        if (rect.top <= 250) {
                             current = section.getAttribute('id');
                         }
                     });
