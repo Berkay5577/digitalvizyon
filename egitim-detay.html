@@ -1414,6 +1414,18 @@ Sertifika</a>
                         }
                     });
 
+                    // Update section indicators
+                    sections.forEach(section => {
+                        const indicator = section.querySelector('.section-indicator');
+                        if (indicator) {
+                            if (current && section.getAttribute('id') === current) {
+                                indicator.classList.remove('hidden');
+                            } else {
+                                indicator.classList.add('hidden');
+                            }
+                        }
+                    });
+                    
                     navLinks.forEach(link => {
                         link.classList.remove('text-[#234190]', 'border-b-2', 'border-[#234190]', 'font-semibold');
                         link.classList.add('text-black/50', 'font-medium');
