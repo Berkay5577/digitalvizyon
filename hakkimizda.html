@@ -139,6 +139,11 @@
         </div>
     </div>
     <nav id="navbar" class="fixed z-50 top-0 left-0 w-full bg-white px-6 py-2.5 flex items-center justify-between shadow-[0_8px_30px_rgb(0,0,0,0.08)] border-b border-black/5 transition-all duration-700 ease-in-out cursor-pointer" style="transform: translateY(0);">
+
+        <!-- Drawer Handle -->
+        <div id="nav-handle" class="absolute -bottom-7 left-1/2 -translate-x-1/2 w-16 h-7 bg-white/40 backdrop-blur-2xl rounded-b-2xl border border-t-0 border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-700 ease-in-out cursor-pointer hover:bg-white/60">
+            <svg id="nav-handle-icon" class="w-5 h-5 text-black/70 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+        </div>
         
         <!-- Logo Wrapper -->
         <div class="flex-1 flex justify-start pl-2">
@@ -701,17 +706,26 @@
                     const navLogoLink = document.getElementById('nav-logo-link');
                     const navLogoImg = document.getElementById('nav-logo-img');
                     const navMenu = document.getElementById('nav-menu');
+                    const navHandle = document.getElementById('nav-handle');
                     
                     if (scrollTop > 100) {
-                        // Scrolled: Glassy white and slide up (peek-a-boo)
-                        navbar.classList.add('bg-white/60', 'backdrop-blur-xl');
+                        navbar.classList.add('bg-white/40', 'backdrop-blur-2xl');
                         navbar.classList.remove('bg-white');
-                        navbar.style.transform = 'translateY(calc(-100% + 12px))';
+                        navbar.style.transform = 'translateY(-100%)';
+                        
+                        if(navHandle) {
+                            navHandle.classList.remove('opacity-0', 'pointer-events-none');
+                            navHandle.classList.add('opacity-100', 'pointer-events-auto');
+                        }
                     } else {
-                        // Top: Normal white navbar
-                        navbar.classList.remove('bg-white/60', 'backdrop-blur-xl');
+                        navbar.classList.remove('bg-white/40', 'backdrop-blur-2xl');
                         navbar.classList.add('bg-white');
                         navbar.style.transform = 'translateY(0)';
+                        
+                        if(navHandle) {
+                            navHandle.classList.add('opacity-0', 'pointer-events-none');
+                            navHandle.classList.remove('opacity-100', 'pointer-events-auto');
+                        }
                     }
                     // --- END NAVBAR LOGIC ---
                     
@@ -1125,19 +1139,23 @@
         }
     
         
+        
         // Navbar Hover (Peek-a-boo)
         const navbar = document.getElementById('navbar');
+        const navHandleIcon = document.getElementById('nav-handle-icon');
         if (navbar) {
             navbar.addEventListener('mouseenter', () => {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 if (scrollTop > 100) {
                     navbar.style.transform = 'translateY(0)';
+                    if(navHandleIcon) navHandleIcon.classList.add('rotate-180');
                 }
             });
             navbar.addEventListener('mouseleave', () => {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 if (scrollTop > 100) {
-                    navbar.style.transform = 'translateY(calc(-100% + 12px))';
+                    navbar.style.transform = 'translateY(-100%)';
+                    if(navHandleIcon) navHandleIcon.classList.remove('rotate-180');
                 }
             });
         }
