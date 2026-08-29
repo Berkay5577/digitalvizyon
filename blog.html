@@ -701,12 +701,12 @@
                     
                     if (scrollTop > 100) {
                         // Scrolled: Glassy white and slide up (peek-a-boo)
-                        navbar.classList.add('bg-white/90', 'backdrop-blur-xl');
+                        navbar.classList.add('bg-white/60', 'backdrop-blur-xl');
                         navbar.classList.remove('bg-white');
                         navbar.style.transform = 'translateY(calc(-100% + 12px))';
                     } else {
                         // Top: Normal white navbar
-                        navbar.classList.remove('bg-white/90', 'backdrop-blur-xl');
+                        navbar.classList.remove('bg-white/60', 'backdrop-blur-xl');
                         navbar.classList.add('bg-white');
                         navbar.style.transform = 'translateY(0)';
                     }
