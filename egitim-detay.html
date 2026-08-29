@@ -1346,7 +1346,7 @@
 
             if (sections.length > 0 && navLinks.length > 0) {
                 window.addEventListener('scroll', () => {
-                    let current = '';
+                    let current = sections.length > 0 ? sections[0].getAttribute('id') : '';
                     const scrollY = window.pageYOffset;
                     
                     sections.forEach(section => {
