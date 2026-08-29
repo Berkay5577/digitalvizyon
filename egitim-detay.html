@@ -221,113 +221,145 @@
                 
                 <!-- Left Main Content -->
                 <div class="lg:col-span-2 flex flex-col gap-12">
-                    
-                    <!-- Eğitim Hakkında & Kazanımlar -->
-                    <div class="bg-white/60 backdrop-blur-xl border border-white/50 shadow-2xl rounded-3xl p-8 lg:p-12">
-                        <h3 class="text-2xl font-bold text-[#111111] mb-6 flex items-center gap-3">
-                            <div class="w-1.5 h-6 bg-gradient-to-b from-[#234190] to-[#CD4799] rounded-full"></div>
-                            Eğitim Hakkında
-                        </h3>
-                        <p class="text-[#111111]/70 leading-relaxed mb-8 text-lg">
-                            Yapay Zeka ve Makine Öğrenimi Uzmanlığı eğitimi, veriyi anlama, işleme ve modelleme konularında derinlemesine teorik ve pratik bilgi sunar. Programımız, sadece kod yazmayı değil, arka plandaki matematiği ve iş mantığını da öğreterek sizi tam donanımlı bir veri bilimci (Data Scientist) yapmayı hedefler.
-                        </p>
-                        
-                        <h4 class="text-xl font-bold text-[#111111] mb-4">Bu Eğitimde Neler Kazanacaksınız?</h4>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-[#CD4799] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span class="text-[#111111]/80 font-medium">Büyük veri setlerini işleme, temizleme ve analize hazır hale getirme becerisi.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-[#CD4799] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span class="text-[#111111]/80 font-medium">Makine öğrenimi algoritmalarını (Regression, Classification, Clustering) gerçek hayat projelerine uygulama.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-[#CD4799] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span class="text-[#111111]/80 font-medium">TensorFlow ve Keras ile Derin Öğrenme (Deep Learning) sinir ağları tasarlama.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-[#CD4799] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span class="text-[#111111]/80 font-medium">Modelleri canlı sistemlere (Production) entegre etme ve API olarak sunma.</span>
-                            </li>
-                        </ul>
-
-                        <h4 class="text-xl font-bold text-[#111111] mb-4">Kimler Katılmalı?</h4>
-                        <p class="text-[#111111]/70 leading-relaxed">
-                            Yazılım geliştiriciler, veri analistleri, teknoloji yöneticileri ve kariyerini yapay zeka alanında şekillendirmek isteyen herkes. Temel düzeyde programlama (tercihen Python) ve istatistik bilgisi avantaj sağlar ancak zorunlu değildir.
-                        </p>
+                    <!-- Sticky Tab Menu -->
+                    <div id="egitim-tabs-container" class="sticky top-[100px] z-40 bg-white/90 backdrop-blur-xl rounded-2xl border border-white/50 shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-2 -mt-4 mb-4 overflow-x-auto hide-scrollbar transition-all duration-300">
+                        <nav class="flex items-center gap-1 md:gap-4 min-w-max px-2" id="egitim-nav">
+                            <a href="#hakkinda" class="tab-link py-3 px-4 text-[15px] font-semibold text-[#234190] border-b-2 border-[#234190] transition-colors whitespace-nowrap">Hakkında</a>
+                            <a href="#on-kosul" class="tab-link py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Ön Koşul</a>
+                            <a href="#icerik" class="tab-link py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">İçerik</a>
+                            <a href="#kazanimlar" class="tab-link py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Kazanımlar</a>
+                            <a href="#hedef-kitle" class="tab-link py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Hedef Kitle</a>
+                            <a href="#sertifika" class="tab-link py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Sertifika</a>
+                        </nav>
                     </div>
 
-                    <!-- Müfredat -->
-                    <div class="bg-white/60 backdrop-blur-xl border border-white/50 shadow-2xl rounded-3xl p-8 lg:p-12" id="mufredat">
-                        <h3 class="text-2xl font-bold text-[#111111] mb-6 flex items-center gap-3">
-                            <div class="w-1.5 h-6 bg-gradient-to-b from-[#783A95] to-[#CD4799] rounded-full"></div>
-                            Eğitim Müfredatı
-                        </h3>
+                    <div class="bg-white/60 backdrop-blur-xl border border-white/50 shadow-2xl rounded-3xl p-8 lg:p-12 flex flex-col gap-16">
                         
-                        <div class="space-y-4">
-                            <!-- Accordion Item 1 -->
-                            <div class="border border-black/10 rounded-2xl p-6 bg-white/40 hover:bg-white/60 transition-colors cursor-pointer group">
-                                <h4 class="font-bold text-lg text-[#111111] group-hover:text-[#CD4799] transition-colors flex justify-between items-center">
-                                    Bölüm 1: Python ile Veri Bilimine Giriş
-                                    <span class="text-[#234190] text-sm">+</span>
-                                </h4>
-                                <div class="mt-4 pt-4 border-t border-black/5 text-[#111111]/70">
-                                    <ul class="list-disc pl-5 space-y-2">
-                                        <li>Python Temelleri ve İleri Seviye Veri Yapıları</li>
-                                        <li>NumPy ile Vektörel Hesaplamalar ve Matris İşlemleri</li>
-                                        <li>Pandas ile Veri Manipülasyonu ve Veri Temizleme</li>
-                                        <li>Matplotlib ve Seaborn ile Veri Görselleştirme Stratejileri</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Accordion Item 2 -->
-                            <div class="border border-black/10 rounded-2xl p-6 bg-white/40 hover:bg-white/60 transition-colors cursor-pointer group">
-                                <h4 class="font-bold text-lg text-[#111111] group-hover:text-[#CD4799] transition-colors flex justify-between items-center">
-                                    Bölüm 2: Makine Öğrenimi (Machine Learning)
-                                    <span class="text-[#234190] text-sm">+</span>
-                                </h4>
-                                <div class="mt-4 pt-4 border-t border-black/5 text-[#111111]/70">
-                                    <ul class="list-disc pl-5 space-y-2">
-                                        <li>Scikit-Learn Kütüphanesine Giriş</li>
-                                        <li>Regresyon Analizi (Linear, Multiple, Polynomial)</li>
-                                        <li>Sınıflandırma (Logistic Regression, Decision Trees, Random Forest)</li>
-                                        <li>Kümeleme (K-Means, Hierarchical Clustering)</li>
-                                        <li>Model Başarısını Ölçme ve Hyperparameter Tuning</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Accordion Item 3 -->
-                            <div class="border border-black/10 rounded-2xl p-6 bg-white/40 hover:bg-white/60 transition-colors cursor-pointer group">
-                                <h4 class="font-bold text-lg text-[#111111] group-hover:text-[#CD4799] transition-colors flex justify-between items-center">
-                                    Bölüm 3: Derin Öğrenme (Deep Learning)
-                                    <span class="text-[#234190] text-sm">+</span>
-                                </h4>
-                                <div class="mt-4 pt-4 border-t border-black/5 text-[#111111]/70">
-                                    <ul class="list-disc pl-5 space-y-2">
-                                        <li>Yapay Sinir Ağlarına (YSA / ANN) Giriş ve Matematiksel Temeller</li>
-                                        <li>TensorFlow ve Keras Mimarisi</li>
-                                        <li>Görüntü İşleme ve Evrişimli Sinir Ağları (CNN)</li>
-                                        <li>Doğal Dil İşleme (NLP) Temelleri ve RNN/LSTM Mimarileri</li>
-                                        <li>Proje: Görüntü Sınıflandırma Uygulaması Geliştirme</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Accordion Item 4 -->
-                            <div class="border border-black/10 rounded-2xl p-6 bg-white/40 hover:bg-white/60 transition-colors cursor-pointer group">
-                                <h4 class="font-bold text-lg text-[#111111] group-hover:text-[#CD4799] transition-colors flex justify-between items-center">
-                                    Bölüm 4: Bitirme Projesi & Canlıya Alma
-                                    <span class="text-[#234190] text-sm">+</span>
-                                </h4>
-                                <div class="mt-4 pt-4 border-t border-black/5 text-[#111111]/70 hidden">
-                                    <!-- Typically hidden and opened with JS, but for design we can keep the first ones open -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <!-- 1. Hakkında -->
+                        <section id="hakkinda" class="scroll-mt-36 egitim-section">
+                            <h3 class="text-2xl font-bold text-[#111111] mb-6 flex items-center gap-3">
+                                <div class="w-1.5 h-6 bg-gradient-to-b from-[#234190] to-[#CD4799] rounded-full"></div>
+                                Eğitim Hakkında
+                            </h3>
+                            <p class="text-[#111111]/70 leading-relaxed text-lg">
+                                Yapay Zeka ve Makine Öğrenimi Uzmanlığı eğitimi, veriyi anlama, işleme ve modelleme konularında derinlemesine teorik ve pratik bilgi sunar. Programımız, sadece kod yazmayı değil, arka plandaki matematiği ve iş mantığını da öğreterek sizi tam donanımlı bir veri bilimci (Data Scientist) yapmayı hedefler.
+                            </p>
+                        </section>
 
+                        <!-- 2. Ön Koşul -->
+                        <section id="on-kosul" class="scroll-mt-36 egitim-section">
+                            <h3 class="text-2xl font-bold text-[#111111] mb-6 flex items-center gap-3">
+                                <div class="w-1.5 h-6 bg-gradient-to-b from-[#783A95] to-[#CD4799] rounded-full"></div>
+                                Ön Koşul
+                            </h3>
+                            <p class="text-[#111111]/70 leading-relaxed text-lg">
+                                Bu eğitime katılmak için temel seviyede programlama bilgisine sahip olmanız (tercihen Python) ve istatistik kavramlarına aşina olmanız eğitim sürecinizi hızlandıracaktır. Daha önce kodlama tecrübesi olmayan katılımcılarımız için eğitim öncesinde bir hızlandırma (bootcamp) dokümanı paylaşılmaktadır.
+                            </p>
+                        </section>
+
+                        <!-- 3. İçerik -->
+                        <section id="icerik" class="scroll-mt-36 egitim-section">
+                            <h3 class="text-2xl font-bold text-[#111111] mb-6 flex items-center gap-3">
+                                <div class="w-1.5 h-6 bg-gradient-to-b from-[#234190] to-[#783A95] rounded-full"></div>
+                                Eğitim İçeriği
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="border border-black/10 rounded-2xl p-6 bg-white/40 hover:bg-white/60 transition-colors cursor-pointer group">
+                                    <h4 class="font-bold text-lg text-[#111111] group-hover:text-[#CD4799] transition-colors flex justify-between items-center">
+                                        Bölüm 1: Python ile Veri Bilimine Giriş
+                                    </h4>
+                                    <div class="mt-4 pt-4 border-t border-black/5 text-[#111111]/70">
+                                        <ul class="list-disc pl-5 space-y-2">
+                                            <li>Python Temelleri ve İleri Seviye Veri Yapıları</li>
+                                            <li>NumPy ile Vektörel Hesaplamalar ve Matris İşlemleri</li>
+                                            <li>Pandas ile Veri Manipülasyonu ve Veri Temizleme</li>
+                                            <li>Matplotlib ve Seaborn ile Veri Görselleştirme Stratejileri</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="border border-black/10 rounded-2xl p-6 bg-white/40 hover:bg-white/60 transition-colors cursor-pointer group">
+                                    <h4 class="font-bold text-lg text-[#111111] group-hover:text-[#CD4799] transition-colors flex justify-between items-center">
+                                        Bölüm 2: Makine Öğrenimi (Machine Learning)
+                                    </h4>
+                                    <div class="mt-4 pt-4 border-t border-black/5 text-[#111111]/70">
+                                        <ul class="list-disc pl-5 space-y-2">
+                                            <li>Scikit-Learn Kütüphanesine Giriş</li>
+                                            <li>Regresyon Analizi (Linear, Multiple, Polynomial)</li>
+                                            <li>Sınıflandırma (Logistic Regression, Decision Trees, Random Forest)</li>
+                                            <li>Kümeleme (K-Means, Hierarchical Clustering)</li>
+                                            <li>Model Başarısını Ölçme ve Hyperparameter Tuning</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="border border-black/10 rounded-2xl p-6 bg-white/40 hover:bg-white/60 transition-colors cursor-pointer group">
+                                    <h4 class="font-bold text-lg text-[#111111] group-hover:text-[#CD4799] transition-colors flex justify-between items-center">
+                                        Bölüm 3: Derin Öğrenme (Deep Learning)
+                                    </h4>
+                                    <div class="mt-4 pt-4 border-t border-black/5 text-[#111111]/70">
+                                        <ul class="list-disc pl-5 space-y-2">
+                                            <li>Yapay Sinir Ağlarına (YSA / ANN) Giriş ve Matematiksel Temeller</li>
+                                            <li>TensorFlow ve Keras Mimarisi</li>
+                                            <li>Görüntü İşleme ve Evrişimli Sinir Ağları (CNN)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 4. Kazanımlar -->
+                        <section id="kazanimlar" class="scroll-mt-36 egitim-section">
+                            <h3 class="text-2xl font-bold text-[#111111] mb-6 flex items-center gap-3">
+                                <div class="w-1.5 h-6 bg-gradient-to-b from-[#CD4799] to-[#234190] rounded-full"></div>
+                                Bu Eğitimde Neler Kazanacaksınız?
+                            </h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-[#CD4799] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <span class="text-[#111111]/80 font-medium">Büyük veri setlerini işleme, temizleme ve analize hazır hale getirme becerisi.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-[#CD4799] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <span class="text-[#111111]/80 font-medium">Makine öğrenimi algoritmalarını (Regression, Classification, Clustering) gerçek hayat projelerine uygulama.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-[#CD4799] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <span class="text-[#111111]/80 font-medium">TensorFlow ve Keras ile Derin Öğrenme (Deep Learning) sinir ağları tasarlama.</span>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <!-- 5. Hedef Kitle -->
+                        <section id="hedef-kitle" class="scroll-mt-36 egitim-section">
+                            <h3 class="text-2xl font-bold text-[#111111] mb-6 flex items-center gap-3">
+                                <div class="w-1.5 h-6 bg-gradient-to-b from-[#234190] to-[#CD4799] rounded-full"></div>
+                                Kimler Katılmalı?
+                            </h3>
+                            <p class="text-[#111111]/70 leading-relaxed text-lg">
+                                Yazılım geliştiriciler, veri analistleri, teknoloji yöneticileri ve kariyerini yapay zeka alanında şekillendirmek isteyen herkes. İstatistik ve veri manipülasyonu konularında kendini geliştirmek isteyen iş zekası uzmanları için de idealdir.
+                            </p>
+                        </section>
+
+                        <!-- 6. Sertifika -->
+                        <section id="sertifika" class="scroll-mt-36 egitim-section">
+                            <h3 class="text-2xl font-bold text-[#111111] mb-6 flex items-center gap-3">
+                                <div class="w-1.5 h-6 bg-gradient-to-b from-[#783A95] to-[#CD4799] rounded-full"></div>
+                                Sertifika
+                            </h3>
+                            <p class="text-[#111111]/70 leading-relaxed text-lg mb-6">
+                                Eğitimi başarıyla tamamlayan tüm katılımcılarımıza, uluslararası geçerliliğe sahip ve benzersiz doğrulama kodlu "Digital Vizyon Başarı Sertifikası" dijital olarak iletilmektedir.
+                            </p>
+                            <div class="flex items-center gap-4 bg-white/50 p-6 rounded-2xl border border-black/5">
+                                <svg class="w-12 h-12 text-[#234190]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                                <div>
+                                    <div class="font-bold text-[#111111]">Uluslararası Doğrulanabilir</div>
+                                    <div class="text-sm text-[#111111]/60">LinkedIn profilinize tek tıkla ekleyebilirsiniz.</div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
                 </div>
-
+                
                 <!-- Right Sidebar (Sticky Course Info) -->
                 <div class="lg:col-span-1">
                     <div class="sticky top-40 bg-white/70 backdrop-blur-xl border border-white/50 shadow-2xl rounded-3xl p-8">
@@ -1229,6 +1261,41 @@
             // Initial call to set correct state on load
             window.dispatchEvent(new Event('scroll'));
         }
-    </script>
+    
+            // Sticky Tab Menu Intersection Observer
+            const sections = document.querySelectorAll('.egitim-section');
+            const navLinks = document.querySelectorAll('.tab-link');
+
+            if (sections.length > 0 && navLinks.length > 0) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '-150px 0px -40% 0px',
+                    threshold: 0
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Remove active from all
+                            navLinks.forEach(link => {
+                                link.classList.remove('text-[#234190]', 'border-b-2', 'border-[#234190]', 'font-semibold');
+                                link.classList.add('text-black/50', 'font-medium');
+                            });
+
+                            // Add active to current
+                            const activeId = entry.target.getAttribute('id');
+                            const activeLink = document.querySelector('.tab-link[href="#' + activeId + '"]');
+                            if (activeLink) {
+                                activeLink.classList.add('text-[#234190]', 'border-b-2', 'border-[#234190]', 'font-semibold');
+                                activeLink.classList.remove('text-black/50', 'font-medium');
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                sections.forEach(section => observer.observe(section));
+            }
+
+</script>
 </body>
 </html>
