@@ -88,6 +88,16 @@
     </style>
 </head>
 <body class="antialiased">
+
+<!-- Gooey Filter -->
+<svg style="width:0;height:0;position:absolute;pointer-events:none;">
+  <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+    <feBlend in="SourceGraphic" in2="goo" />
+  </filter>
+</svg>
+
     
     <!-- Custom Cursor Elements -->
     <div id="custom-cursor"></div>
@@ -138,7 +148,15 @@
             </div>
         </div>
     </div>
-    <nav id="navbar" class="fixed z-50 top-0 left-0 w-full bg-white px-6 py-2.5 flex items-center justify-between shadow-[0_8px_30px_rgb(0,0,0,0.08)] border-b border-black/5 transition-all duration-700 ease-in-out cursor-pointer" style="transform: translateY(0);">
+    <nav id="navbar" class="fixed z-50 top-0 left-0 w-full bg-transparent px-6 py-2.5 flex items-center justify-between shadow-[0_8px_30px_rgb(0,0,0,0.08)] border-b border-black/5 transition-all duration-700 ease-in-out cursor-pointer" style="transform: translateY(0);">
+
+    <!-- Gooey Background Container -->
+    <div class="absolute inset-0 w-full h-full pointer-events-none z-[-1]" style="filter: url(#goo);">
+        <div class="absolute inset-0 w-full h-full bg-white/90" id="nav-main-bg"></div>
+        <!-- The liquid drop for mega menu -->
+        <div id="mega-blob" class="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-10 bg-white/90 rounded-full transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.26,1.55)] opacity-0"></div>
+    </div>
+
 
         <!-- Drawer Handle -->
         <div id="nav-handle" class="absolute -bottom-7 left-1/2 -translate-x-1/2 w-16 h-7 bg-white/40 backdrop-blur-2xl rounded-b-2xl border border-t-0 border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-700 ease-in-out cursor-pointer hover:bg-white/60">
@@ -155,13 +173,13 @@
         <!-- Links Wrapper -->
         <div id="nav-menu" class="hidden lg:flex flex-1 justify-center items-center gap-10 text-[15px] font-medium text-black/70 whitespace-nowrap transition-all duration-700">
             <a href="hakkimizda.html" class="hover:text-black transition-colors">Hakkımızda</a>
-            <div class="relative group flex items-center h-full">
+            <div class="relative flex items-center h-full" id="mega-trigger">
                 <a href="egitimler.html" class="hover:text-black transition-colors py-6">Eğitimler</a>
                 
-                <!-- Mega Menu Wrapper -->
-                <div class="absolute top-[80%] left-1/2 -translate-x-1/2 pt-4 opacity-0 translate-y-4 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-500 ease-out z-50">
+                <!-- Mega Menu Content (No background, just content!) -->
+                <div id="mega-content" class="absolute top-[80%] left-1/2 -translate-x-1/2 pt-4 opacity-0 translate-y-4 pointer-events-none transition-all duration-500 ease-out z-50">
                     
-                    <div class="w-[850px] bg-white/80 backdrop-blur-2xl rounded-[2rem] p-8 border border-white/50 shadow-[0_20px_60px_rgb(0,0,0,0.08)] cursor-default text-left relative overflow-hidden">
+                    <div class="w-[850px] p-8 cursor-default text-left relative overflow-hidden transition-all duration-500 delay-200">
                         
                         <!-- Search Bar -->
                         <div class="relative mb-8 z-10">
@@ -180,7 +198,6 @@
                                     <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">Python Veri Bilimi</a></li>
                                     <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">Full-Stack Web (React)</a></li>
                                     <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">Yapay Zeka ve ML</a></li>
-                                    <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">DevOps & Cloud</a></li>
                                 </ul>
                             </div>
                             
@@ -193,7 +210,6 @@
                                     <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">Etik Hacker (CEH)</a></li>
                                     <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">Sızma Testi Uzmanlığı</a></li>
                                     <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">Bilgi Güvenliği Yönetimi</a></li>
-                                    <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">Adli Bilişim (Forensics)</a></li>
                                 </ul>
                             </div>
                 
@@ -206,21 +222,12 @@
                                     <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">PMP Hazırlık Eğitimi</a></li>
                                     <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">Agile & Scrum Master</a></li>
                                     <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">ITIL 4 Foundation</a></li>
-                                    <li><a href="egitim-detay.html" class="text-black/70 hover:text-[#234190] hover:translate-x-1 font-medium transition-all block">Liderlik ve İnovasyon</a></li>
                                 </ul>
                             </div>
                         </div>
-                        
-                        <!-- Bottom Link -->
-                        <div class="mt-8 pt-6 border-t border-black/5 flex justify-between items-center z-10 relative">
-                            <span class="text-sm text-black/50 font-medium">140'tan fazla eğitim seçeneği.</span>
-                            <a href="egitimler.html" class="text-[15px] font-bold text-[#234190] hover:text-[#CD4799] transition-colors flex items-center gap-1 group/btn">
-                                Tüm Eğitimleri İncele 
-                                <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
-                            </a>
-                        </div>
                     </div>
                 </div>
+            </div>
             </div>
             <a href="biten-egitimlerimiz.html" class="hover:text-black transition-colors">Biten Eğitimler</a>
             <a href="blog.html" class="hover:text-black transition-colors">Blog</a>
@@ -744,10 +751,13 @@
                     const navLogoImg = document.getElementById('nav-logo-img');
                     const navMenu = document.getElementById('nav-menu');
                     const navHandle = document.getElementById('nav-handle');
+                    const navMainBg = document.getElementById('nav-main-bg');
                     
                     if (scrollTop > 100) {
-                        navbar.classList.add('bg-white/40', 'backdrop-blur-2xl');
-                        navbar.classList.remove('bg-white');
+                        if(navMainBg) {
+                            navMainBg.classList.add('bg-white/40', 'backdrop-blur-2xl');
+                            navMainBg.classList.remove('bg-white', 'bg-white/90');
+                        }
                         navbar.style.transform = 'translateY(-100%)';
                         
                         if(navHandle) {
@@ -755,14 +765,17 @@
                             navHandle.classList.add('opacity-100', 'pointer-events-auto');
                         }
                     } else {
-                        navbar.classList.remove('bg-white/40', 'backdrop-blur-2xl');
-                        navbar.classList.add('bg-white');
+                        if(navMainBg) {
+                            navMainBg.classList.remove('bg-white/40', 'backdrop-blur-2xl');
+                            navMainBg.classList.add('bg-white/90');
+                        }
                         navbar.style.transform = 'translateY(0)';
                         
                         if(navHandle) {
                             navHandle.classList.add('opacity-0', 'pointer-events-none');
                             navHandle.classList.remove('opacity-100', 'pointer-events-auto');
                         }
+                    }
                     }
                     // --- END NAVBAR LOGIC ---
                     
@@ -1196,6 +1209,44 @@
                 }
             });
         }
+
+        // Gooey Mega Menu Logic
+        const megaTrigger = document.getElementById('mega-trigger');
+        const megaBlob = document.getElementById('mega-blob');
+        const megaContent = document.getElementById('mega-content');
+        
+        if (megaTrigger && megaBlob && megaContent) {
+            megaTrigger.addEventListener('mouseenter', () => {
+                // Blob morphs into the mega menu background
+                megaBlob.style.opacity = '1';
+                megaBlob.style.top = '70px';
+                megaBlob.style.width = '850px';
+                megaBlob.style.height = '350px';
+                megaBlob.style.borderRadius = '2rem';
+                
+                // Show content slightly after
+                setTimeout(() => {
+                    megaContent.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                    megaContent.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                }, 150);
+            });
+            
+            megaTrigger.addEventListener('mouseleave', () => {
+                // Hide content instantly
+                megaContent.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                megaContent.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                
+                // Blob sucks back up like liquid
+                megaBlob.style.width = '40px';
+                megaBlob.style.height = '40px';
+                megaBlob.style.top = '0px';
+                megaBlob.style.borderRadius = '9999px';
+                setTimeout(() => {
+                    megaBlob.style.opacity = '0';
+                }, 500);
+            });
+        }
+
 </script>
 </body>
 </html>

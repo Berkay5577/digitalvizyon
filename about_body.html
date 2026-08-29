@@ -1,5 +1,15 @@
 <body class="wp-singular page-template-default page page-id-2529 page-parent wp-custom-logo wp-theme-hello-elementor elementor-default elementor-kit-7 elementor-page elementor-page-2529">
 
+<!-- Gooey Filter -->
+<svg style="width:0;height:0;position:absolute;pointer-events:none;">
+  <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+    <feBlend in="SourceGraphic" in2="goo" />
+  </filter>
+</svg>
+
+
 
 <a class="skip-link screen-reader-text" href="#content">¦eri­e atla</a>
 
@@ -1051,5 +1061,43 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
                 }
             });
         }
+
+        // Gooey Mega Menu Logic
+        const megaTrigger = document.getElementById('mega-trigger');
+        const megaBlob = document.getElementById('mega-blob');
+        const megaContent = document.getElementById('mega-content');
+        
+        if (megaTrigger && megaBlob && megaContent) {
+            megaTrigger.addEventListener('mouseenter', () => {
+                // Blob morphs into the mega menu background
+                megaBlob.style.opacity = '1';
+                megaBlob.style.top = '70px';
+                megaBlob.style.width = '850px';
+                megaBlob.style.height = '350px';
+                megaBlob.style.borderRadius = '2rem';
+                
+                // Show content slightly after
+                setTimeout(() => {
+                    megaContent.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                    megaContent.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                }, 150);
+            });
+            
+            megaTrigger.addEventListener('mouseleave', () => {
+                // Hide content instantly
+                megaContent.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                megaContent.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                
+                // Blob sucks back up like liquid
+                megaBlob.style.width = '40px';
+                megaBlob.style.height = '40px';
+                megaBlob.style.top = '0px';
+                megaBlob.style.borderRadius = '9999px';
+                setTimeout(() => {
+                    megaBlob.style.opacity = '0';
+                }, 500);
+            });
+        }
+
 </script>
 </body>
