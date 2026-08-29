@@ -307,12 +307,36 @@
                     <div class="sticky top-[100px] z-40 p-[2px] mb-4 rounded-2xl bg-gradient-to-r from-[#CD4799] via-[#234190] to-[#783A95] shadow-[0_8px_30px_rgba(35,65,144,0.15)] transition-all duration-300">
                         <div id="egitim-tabs-container" class="bg-white/95 backdrop-blur-xl rounded-[14px] p-2 overflow-x-auto hide-scrollbar w-full h-full">
                         <nav class="flex items-center gap-1 md:gap-4 min-w-max px-2" id="egitim-nav">
-                            <a href="#hakkinda" class="tab-link py-3 px-4 text-[15px] font-semibold text-[#234190] border-b-2 border-[#234190] transition-colors whitespace-nowrap">Hakkında</a>
-                            <a href="#on-kosul" class="tab-link py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Ön Koşul</a>
-                            <a href="#icerik" class="tab-link py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">İçerik</a>
-                            <a href="#kazanimlar" class="tab-link py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Kazanımlar</a>
-                            <a href="#hedef-kitle" class="tab-link py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Hedef Kitle</a>
-                            <a href="#sertifika" class="tab-link py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Sertifika</a>
+                            <a href="#hakkinda" class="tab-link flex items-center py-3 px-4 text-[15px] font-semibold text-[#234190] border-b-2 border-[#234190] transition-colors whitespace-nowrap">Hakkında
+    <span class="tab-indicator hidden relative flex h-2 w-2 ml-1">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#783A95] opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#783A95]"></span>
+    </span></a>
+                            <a href="#on-kosul" class="tab-link flex items-center py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Ön Koşul
+    <span class="tab-indicator hidden relative flex h-2 w-2 ml-1">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#783A95] opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#783A95]"></span>
+    </span></a>
+                            <a href="#icerik" class="tab-link flex items-center py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">İçerik
+    <span class="tab-indicator hidden relative flex h-2 w-2 ml-1">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#783A95] opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#783A95]"></span>
+    </span></a>
+                            <a href="#kazanimlar" class="tab-link flex items-center py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Kazanımlar
+    <span class="tab-indicator hidden relative flex h-2 w-2 ml-1">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#783A95] opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#783A95]"></span>
+    </span></a>
+                            <a href="#hedef-kitle" class="tab-link flex items-center py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Hedef Kitle
+    <span class="tab-indicator hidden relative flex h-2 w-2 ml-1">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#783A95] opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#783A95]"></span>
+    </span></a>
+                            <a href="#sertifika" class="tab-link flex items-center py-3 px-4 text-[15px] font-medium text-black/50 hover:text-black transition-colors whitespace-nowrap">Sertifika
+    <span class="tab-indicator hidden relative flex h-2 w-2 ml-1">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#783A95] opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#783A95]"></span>
+    </span></a>
                         </nav>
                     </div>
                     </div>
@@ -1363,9 +1387,13 @@
                     navLinks.forEach(link => {
                         link.classList.remove('text-[#234190]', 'border-b-2', 'border-[#234190]', 'font-semibold');
                         link.classList.add('text-black/50', 'font-medium');
+                        const indicator = link.querySelector('.tab-indicator');
+                        if(indicator) indicator.classList.add('hidden');
+                        
                         if (current && link.getAttribute('href') === '#' + current) {
                             link.classList.add('text-[#234190]', 'border-b-2', 'border-[#234190]', 'font-semibold');
                             link.classList.remove('text-black/50', 'font-medium');
+                            if(indicator) indicator.classList.remove('hidden');
                         }
                     });
                 });
