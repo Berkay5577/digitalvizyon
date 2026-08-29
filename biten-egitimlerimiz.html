@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Vizyon Akademi | Kurumsal Eğitim Çözümleri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa; /* Light background */
+            color: #111111;
+            overflow-x: clip;
+        }
+        
+        ::selection {
+            background-color: rgba(120, 58, 149, 0.5); /* Purple selection matching logo */
+            color: #ffffff;
+        }
+
+        /* Abstract background glow */
+        .hero-bg {
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            top: 50%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(120, 58, 149, 0.08) 0%, rgba(255,255,255,0) 60%);
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .perspective-1200 {
+            perspective: 1200px;
+        }
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+        
+        #angled-banner {
+            transition: transform 0.15s ease-out;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom Cursor */
+        * {
+            cursor: none !important;
+        }
+        #custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #234190, #CD4799);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        #custom-cursor-follower {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(205, 71, 153, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999998;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, border-color 0.2s;
+        }
+        body:hover #custom-cursor, body:hover #custom-cursor-follower {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <!-- Custom Cursor Elements -->
+    <div id="custom-cursor"></div>
+    <div id="custom-cursor-follower"></div>
+
+    <!-- Fullscreen Menu Overlay -->
+    <div id="fullscreen-menu" class="fixed inset-0 z-[100] bg-white opacity-0 pointer-events-none transition-opacity duration-700 ease-in-out flex">
+        
+        <!-- Close Button -->
+        <button id="close-menu" class="absolute top-6 left-6 w-[4rem] h-[4rem] bg-[#111111] rounded-full flex items-center justify-center text-white hover:scale-105 transition-transform group shadow-2xl z-50">
+            <svg class="w-8 h-8 group-hover:rotate-90 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        
+        <div class="w-full h-full max-w-[1400px] mx-auto flex flex-col md:flex-row">
+            <!-- Left Side: Links -->
+            <div class="w-full md:w-1/2 h-full flex flex-col justify-center px-12 md:pl-24 md:pr-16 relative">
+                <nav class="flex flex-col gap-6 md:gap-10">
+                    <a href="index.html" class="menu-link text-4xl md:text-6xl lg:text-7xl font-bold text-black hover:text-[#783A95] transition-colors opacity-0 transform translate-y-8">Ana Sayfa</a>
+                    <a href="hakkimizda.html" class="menu-link text-4xl md:text-6xl lg:text-7xl font-bold text-black hover:text-[#783A95] transition-colors opacity-0 transform translate-y-8" style="transition-delay: 100ms;">Hakkımızda</a>
+                    <a href="egitimler.html" class="menu-link text-4xl md:text-6xl lg:text-7xl font-bold text-black hover:text-[#783A95] transition-colors opacity-0 transform translate-y-8" style="transition-delay: 200ms;">Eğitimler</a>
+                    <a href="biten-egitimlerimiz.html" class="menu-link text-4xl md:text-6xl lg:text-7xl font-bold text-black hover:text-[#783A95] transition-colors opacity-0 transform translate-y-8" style="transition-delay: 200ms;">Biten Eğitimler</a>
+                    <a href="blog.html" class="menu-link text-4xl md:text-6xl lg:text-7xl font-bold text-black hover:text-[#783A95] transition-colors opacity-0 transform translate-y-8" style="transition-delay: 400ms;">Blog</a>
+                    <a href="iletisim.html" class="menu-link text-4xl md:text-6xl lg:text-7xl font-bold text-[#CD4799] hover:text-black transition-colors opacity-0 transform translate-y-8 mt-4 md:mt-8" style="transition-delay: 500ms;">İletişim</a>
+                
+</nav>
+            </div>
+            
+            <!-- Divider with Purple Gradient -->
+            <div class="hidden md:block w-[2px] h-2/3 my-auto bg-gradient-to-b from-transparent via-[#783A95] to-transparent relative">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#CD4799] shadow-[0_0_20px_#CD4799]"></div>
+            </div>
+            
+            <!-- Right Side: Logo & Motto -->
+            <div class="w-full md:w-1/2 h-full flex flex-col justify-center px-12 md:pr-24 md:pl-20">
+                <div class="menu-right-content opacity-0 transform translate-y-12 transition-all duration-1000 delay-500">
+                    <img src="logo.svg" class="w-64 md:w-80 mb-12 filter brightness-0" alt="Digital Vizon">
+                    
+                    <h3 class="text-4xl md:text-5xl lg:text-[4.5rem] font-bold leading-[1.1] tracking-tight text-black mb-8">
+                        Eğitimin <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#783A95] to-[#CD4799]">Geleceğini</span> <br>
+                        Keşfedin.
+                    </h3>
+                    
+                    <p class="text-lg md:text-xl text-black/60 font-medium max-w-md leading-relaxed">
+                        "Sektör liderliğimizle, müşteri odaklı ve özelleştirilmiş eğitim çözümleri sunarak kurumların gelişim yolculuklarına eşlik ediyoruz."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav id="navbar" class="fixed z-50 top-6 left-1/2 -translate-x-1/2 bg-[#111111] rounded-full p-2.5 flex items-center shadow-2xl border border-white/10 transition-all duration-700 ease-in-out overflow-hidden" style="width: max-content;">
+        
+        <!-- Logo Wrapper -->
+        <a href="index.html" id="nav-logo-link" class="relative shrink-0 transition-all duration-700 ease-in-out block h-[3.5rem] md:h-[4rem] w-[12rem] md:w-[15rem] rounded-full overflow-hidden ml-4">
+            <img src="logo.svg" id="nav-logo-img" class="absolute top-0 left-0 h-full w-auto max-w-none transition-all duration-700 ease-in-out transform-gpu origin-left" alt="Logo">
+        </a>
+        
+        <!-- Links & CTA Wrapper -->
+        <div id="nav-menu" class="flex items-center gap-10 transition-all duration-700 ease-in-out overflow-hidden" style="max-width: 800px; opacity: 1;">
+            <div class="hidden md:flex items-center gap-10 text-base font-medium text-white/80 px-4 whitespace-nowrap ml-2">
+                <a href="hakkimizda.html" class="hover:text-white transition-colors">Hakkımızda</a>
+                <a href="egitimler.html" class="hover:text-white transition-colors">Eğitimler</a>
+                    <a href="biten-egitimlerimiz.html" class="hover:text-white transition-colors">Biten Eğitimler</a>
+                <a href="blog.html" class="hover:text-white transition-colors">Blog</a>
+            </div>
+            
+            <a href="iletisim.html" class="hidden md:flex px-10 py-4 rounded-full bg-white text-black text-base font-semibold hover:bg-gray-200 transition-colors shrink-0 mr-1 whitespace-nowrap items-center">
+                İletişim
+            </a>
+        </div>
+    
+</nav>
+
+       <!-- FIXED BACKGROUND (Video for the whole page) -->
+    <div class="fixed top-0 left-0 w-full h-screen z-0 pointer-events-none overflow-hidden">
+        <!-- Abstract Purple/Blue Background Glow -->
+        <div class="hero-bg"></div>
+        
+        <!-- Scroll Video Canvas (Hands) -->
+        <div class="absolute inset-0 w-full h-full mix-blend-multiply opacity-20 flex items-center justify-center overflow-hidden" style="-webkit-mask-image: radial-gradient(ellipse at 40% 50%, black 50%, transparent 100%); mask-image: radial-gradient(ellipse at 40% 50%, black 50%, transparent 100%);">
+            <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover" style="image-rendering: high-quality;"></canvas>
+            
+        </div>
+    </div>
+
+
+    <!-- ABOUT US CONTENT WRAPPER -->
+    <div class="relative z-10 w-full min-h-screen bg-[#F4F6F9]/85 backdrop-blur-2xl pt-40 pb-32 overflow-hidden">
+        <!-- Abstract Background Glows -->
+        <div class="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
+            <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[#CD4799]/10 rounded-full mix-blend-multiply filter blur-[150px] animate-[pulse_10s_ease-in-out_infinite]"></div>
+            <div class="absolute bottom-[20%] right-[-10%] w-[60vw] h-[60vw] bg-[#234190]/10 rounded-full mix-blend-multiply filter blur-[150px] animate-[pulse_12s_ease-in-out_infinite_reverse]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-8 lg:px-16 relative z-10">
+            <!-- Header / Search Section -->
+            <section class="mb-20">
+                <div class="flex flex-col items-center">
+                    <h1 class="text-4xl md:text-5xl font-bold text-[#111111] mb-8 text-center">Biten Eğitimlerimiz</h1>
+                    <div class="w-full max-w-3xl relative group">
+                        <input type="text" placeholder="Geçmiş eğitimlerde ara..." class="w-full bg-white/70 backdrop-blur-md border border-white/50 shadow-2xl rounded-full py-5 pl-8 pr-20 text-lg text-[#111111] placeholder-black/30 focus:outline-none focus:border-[#CD4799]/50 focus:bg-white/90 transition-all">
+                        <button type="button" class="absolute right-2.5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-gradient-to-r from-[#234190] to-[#CD4799] flex items-center justify-center hover:scale-105 transition-transform shadow-xl">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Content (Full Grid) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course 1 -->
+                <div class="bg-white/40 backdrop-blur-lg border border-white/50 rounded-3xl p-6 shadow-xl flex flex-col relative overflow-hidden grayscale-[50%] hover:grayscale-0 transition-all duration-500 group">
+                    <div class="absolute top-4 right-4 bg-[#111111] text-white px-3 py-1 rounded-full text-xs font-bold z-20">Tamamlandı</div>
+                    <div class="h-48 rounded-2xl overflow-hidden mb-6 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 to-transparent mix-blend-overlay z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="AI">
+                    </div>
+                    <h4 class="text-xl font-bold text-[#111111] mb-3">İleri Seviye Python</h4>
+                    <p class="text-sm text-black/60 mb-6 flex-grow">Veri analizi ve otomasyon için Python kütüphaneleri uygulamalı eğitimi başarıyla tamamlandı.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-black/5">
+                        <span class="text-xs font-medium text-black/40">12 Ekim 2023 - Mezun: 24</span>
+                    </div>
+                </div>
+                <!-- Course 2 -->
+                <div class="bg-white/40 backdrop-blur-lg border border-white/50 rounded-3xl p-6 shadow-xl flex flex-col relative overflow-hidden grayscale-[50%] hover:grayscale-0 transition-all duration-500 group">
+                    <div class="absolute top-4 right-4 bg-[#111111] text-white px-3 py-1 rounded-full text-xs font-bold z-20">Tamamlandı</div>
+                    <div class="h-48 rounded-2xl overflow-hidden mb-6 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 to-transparent mix-blend-overlay z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="PMP">
+                    </div>
+                    <h4 class="text-xl font-bold text-[#111111] mb-3">Kurumsal Çevik Dönüşüm</h4>
+                    <p class="text-sm text-black/60 mb-6 flex-grow">Şirket içi süreçlerin Agile ve Scrum metodolojileriyle yenilenmesi eğitimi.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-black/5">
+                        <span class="text-xs font-medium text-black/40">5 Kasım 2023 - Mezun: 18</span>
+                    </div>
+                </div>
+                <!-- Course 3 -->
+                <div class="bg-white/40 backdrop-blur-lg border border-white/50 rounded-3xl p-6 shadow-xl flex flex-col relative overflow-hidden grayscale-[50%] hover:grayscale-0 transition-all duration-500 group">
+                    <div class="absolute top-4 right-4 bg-[#111111] text-white px-3 py-1 rounded-full text-xs font-bold z-20">Tamamlandı</div>
+                    <div class="h-48 rounded-2xl overflow-hidden mb-6 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 to-transparent mix-blend-overlay z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Cyber">
+                    </div>
+                    <h4 class="text-xl font-bold text-[#111111] mb-3">Uygulamalı Beyaz Şapkalı Hacker</h4>
+                    <p class="text-sm text-black/60 mb-6 flex-grow">Kurumsal ağ ve web uygulamaları sızma testi eğitim kampı başarıyla sonuçlandı.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-black/5">
+                        <span class="text-xs font-medium text-black/40">20 Aralık 2023 - Mezun: 30</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Footer -->
+    <footer class="bg-[#111111] text-white pt-20 pb-8 px-8 lg:px-16 relative overflow-hidden">
+        <!-- Background subtle glow -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#234190]/20 blur-[120px] rounded-[100%] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Top Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+                <!-- Brand Column -->
+                <div class="lg:col-span-4 flex flex-col items-start">
+                    <a href="#" class="inline-block mb-6 relative group">
+                        <!-- We use text instead of logo svg so it displays instantly, or you can link logo.svg -->
+                        <span class="text-2xl font-black tracking-widest uppercase bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
+                            Digital Vizyon
+                        </span>
+                        <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#234190] to-[#CD4799] group-hover:w-full transition-all duration-500"></div>
+                    </a>
+                    <p class="text-white/50 text-sm leading-relaxed font-light mb-8 max-w-sm">
+                        Avrupa standartlarında kurumsal eğitim partneriniz. Kariyerinizi dönüştürecek güncel teknoloji eğitimleri ve profesyonel sertifikasyon programları.
+                    </p>
+                    
+                    <!-- Site Search -->
+                    <div class="w-full max-w-sm mb-8 relative group">
+                        <input type="text" placeholder="Site içinde ara..." class="w-full bg-white/5 border border-white/10 rounded-full py-3 pl-5 pr-12 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#CD4799]/50 focus:bg-white/10 transition-all">
+                        <button type="button" class="absolute right-1.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-gradient-to-r from-[#234190] to-[#CD4799] flex items-center justify-center hover:opacity-90 transition-opacity">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </button>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Spacer -->
+                <div class="hidden lg:block lg:col-span-1"></div>
+
+                <!-- Links 1 -->
+                <div class="lg:col-span-2">
+                    <h4 class="text-white font-bold tracking-widest uppercase text-xs mb-6">Kurumsal</h4>
+                    <ul class="flex flex-col gap-4">
+                        <li><a href="#" class="text-white/60 hover:text-white transition-colors text-sm font-light flex items-center gap-2 group"><span class="w-0 h-[1px] bg-white group-hover:w-3 transition-all duration-300"></span> Hakkımızda</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white transition-colors text-sm font-light flex items-center gap-2 group"><span class="w-0 h-[1px] bg-white group-hover:w-3 transition-all duration-300"></span> Neden Biz?</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white transition-colors text-sm font-light flex items-center gap-2 group"><span class="w-0 h-[1px] bg-white group-hover:w-3 transition-all duration-300"></span> Referanslar</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white transition-colors text-sm font-light flex items-center gap-2 group"><span class="w-0 h-[1px] bg-white group-hover:w-3 transition-all duration-300"></span> Eğitmenlerimiz</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white transition-colors text-sm font-light flex items-center gap-2 group"><span class="w-0 h-[1px] bg-white group-hover:w-3 transition-all duration-300"></span> İletişim</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links 2 -->
+                <div class="lg:col-span-2">
+                    <h4 class="text-white font-bold tracking-widest uppercase text-xs mb-6">Çözümler</h4>
+                    <ul class="flex flex-col gap-4">
+                        <li><a href="#" class="text-white/60 hover:text-white transition-colors text-sm font-light flex items-center gap-2 group"><span class="w-0 h-[1px] bg-white group-hover:w-3 transition-all duration-300"></span> Açık Sınıf Eğitimler</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white transition-colors text-sm font-light flex items-center gap-2 group"><span class="w-0 h-[1px] bg-white group-hover:w-3 transition-all duration-300"></span> Kurumsal Kapalı Sınıf</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white transition-colors text-sm font-light flex items-center gap-2 group"><span class="w-0 h-[1px] bg-white group-hover:w-3 transition-all duration-300"></span> Danışmanlık</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white transition-colors text-sm font-light flex items-center gap-2 group"><span class="w-0 h-[1px] bg-white group-hover:w-3 transition-all duration-300"></span> PECB Sertifikasyonu</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white transition-colors text-sm font-light flex items-center gap-2 group"><span class="w-0 h-[1px] bg-white group-hover:w-3 transition-all duration-300"></span> Teknoloji Kampları</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="lg:col-span-3">
+                    <h4 class="text-white font-bold tracking-widest uppercase text-xs mb-6">İletişim Bilgileri</h4>
+                    <ul class="flex flex-col gap-5">
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 text-white/40">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-white/50 text-[11px] uppercase tracking-wider mb-1">Müşteri Hizmetleri</span>
+                                <a href="tel:+908502220000" class="text-white hover:text-[#CD4799] transition-colors font-medium">0312 217 43 03</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 text-white/40">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-white/50 text-[11px] uppercase tracking-wider mb-1">Destek & Bilgi</span>
+                                <a href="mailto:info@digitalvizyon.net" class="text-white hover:text-[#CD4799] transition-colors font-medium">info@digitalvizyon.net</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 text-white/40">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-white/50 text-[11px] uppercase tracking-wider mb-1">Merkez Ofis</span>
+                                <span class="text-white/80 text-sm font-light leading-relaxed">Ümitköy Mahallesi, Ankaralılar Caddesi, 2481. Sk. Kafkas Sitesi No:26, 06810 Çankaya/Ankara</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8 mt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-xs font-light">
+                    &copy; 2026 Digital Vizyon Akademi. Tüm hakları saklıdır.
+                </p>
+                <div class="flex items-center gap-6 text-xs font-light">
+                    <a href="#" class="text-white/40 hover:text-white transition-colors">KVKK Aydınlatma Metni</a>
+                    <a href="#" class="text-white/40 hover:text-white transition-colors">Gizlilik Politikası</a>
+                    <a href="#" class="text-white/40 hover:text-white transition-colors">Çerez Politikası</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Global Mouse tracking for Custom Cursor and Particles
+            const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+            const cursor = document.getElementById('custom-cursor');
+            const follower = document.getElementById('custom-cursor-follower');
+            
+            let followerX = mouse.x;
+            let followerY = mouse.y;
+            
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                if (cursor) {
+                    cursor.style.left = mouse.x + 'px';
+                    cursor.style.top = mouse.y + 'px';
+                }
+            });
+
+            // Interactive element hover effect
+            const interactiveElements = document.querySelectorAll('a, button, input, .cursor-pointer');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    if (cursor) {
+                        cursor.style.width = '24px';
+                        cursor.style.height = '24px';
+                        cursor.style.backgroundColor = 'transparent';
+                        cursor.style.border = '2px solid #CD4799';
+                        cursor.style.background = 'none';
+                    }
+                    if (follower) {
+                        follower.style.width = '48px';
+                        follower.style.height = '48px';
+                        follower.style.borderColor = 'rgba(35, 65, 144, 0.8)';
+                    }
+                });
+                el.addEventListener('mouseleave', () => {
+                    if (cursor) {
+                        cursor.style.width = '12px';
+                        cursor.style.height = '12px';
+                        cursor.style.border = 'none';
+                        cursor.style.background = 'linear-gradient(135deg, #234190, #CD4799)';
+                    }
+                    if (follower) {
+                        follower.style.width = '32px';
+                        follower.style.height = '32px';
+                        follower.style.borderColor = 'rgba(205, 71, 153, 0.5)';
+                    }
+                });
+            });
+
+            function animateCursor() {
+                // Smooth follow effect
+                followerX += (mouse.x - followerX) * 0.15;
+                followerY += (mouse.y - followerY) * 0.15;
+                
+                if (follower) {
+                    follower.style.left = followerX + 'px';
+                    follower.style.top = followerY + 'px';
+                }
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            // Setup Gallery Canvas frame scrolling
+            const galCanvas = document.getElementById('gallery-canvas');
+            const galWrapper = document.getElementById('gallery-wrapper');
+            
+            if (galCanvas && galWrapper) {
+                const galContext = galCanvas.getContext('2d');
+                galContext.imageSmoothingEnabled = true;
+                galContext.imageSmoothingQuality = 'high';
+                const galFrameCount = 120;
+                
+                // Fallback logic for webp/jpg if one fails
+                const currentGalFrame = index => `assets/frame/frame5/frame_${index.toString().padStart(4, '0')}.webp`;
+
+                const galImages = [];
+                for (let i = 0; i < galFrameCount; i++) {
+                    const img = new Image();
+                    img.src = currentGalFrame(i);
+                    // If webp fails (fallback to jpg from python script)
+                    img.onerror = function() {
+                        if (this.src.endsWith('.webp')) {
+                            this.src = this.src.replace('.webp', '.jpg');
+                        }
+                    };
+                    galImages.push(img);
+                    
+                    if (i === 0) {
+                        img.onload = () => {
+                            galCanvas.width = img.width;
+                            galCanvas.height = img.height;
+                            galContext.clearRect(0, 0, galCanvas.width, galCanvas.height);
+                            galContext.drawImage(img, 0, 0, galCanvas.width, galCanvas.height);
+                        }
+                    }
+                }
+
+                window.addEventListener('scroll', () => {
+                    const rect = galWrapper.getBoundingClientRect();
+                    const maxScroll = rect.height - window.innerHeight;
+                    // We only care when the wrapper's top is <= 0 (it is pinned)
+                    if (rect.top <= 0 && rect.top >= -maxScroll) {
+                        let scrollProgress = Math.abs(rect.top) / maxScroll;
+                        
+                        // Limit between 0 and 1
+                        scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+                        
+                        const frameIndex = Math.min(
+                            galFrameCount - 1,
+                            Math.floor(scrollProgress * galFrameCount)
+                        );
+                        
+                        requestAnimationFrame(() => {
+                            if (galImages[frameIndex] && galImages[frameIndex].complete) {
+                                galContext.clearRect(0, 0, galCanvas.width, galCanvas.height);
+                                galContext.drawImage(galImages[frameIndex], 0, 0, galCanvas.width, galCanvas.height);
+                            }
+                        });
+                    }
+                }, { passive: true });
+            }
+
+            // Setup canvas frame scrolling (Hero)
+            const heroCanvas = document.getElementById('hero-canvas');
+            const particlesCanvas = document.getElementById('particles-canvas');
+            
+            if (particlesCanvas) {
+                const pCtx = particlesCanvas.getContext('2d');
+                const particles = [];
+                const maxParticles = window.innerWidth < 768 ? 60 : 140;
+                
+                function resizePCanvas() {
+                    particlesCanvas.width = window.innerWidth;
+                    particlesCanvas.height = window.innerHeight;
+                }
+                resizePCanvas();
+                window.addEventListener('resize', resizePCanvas);
+
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * particlesCanvas.width;
+                        this.y = Math.random() * particlesCanvas.height;
+                        this.vx = (Math.random() - 0.5) * 1.0;
+                        this.vy = (Math.random() - 0.5) * 1.0;
+                        this.radius = Math.random() * 3 + 2;
+                        const colors = ['#234190', '#783A95', '#CD4799'];
+                        this.color = colors[Math.floor(Math.random() * colors.length)];
+                    }
+                    
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x < 0 || this.x > particlesCanvas.width) this.vx *= -1;
+                        if (this.y < 0 || this.y > particlesCanvas.height) this.vy *= -1;
+                    }
+                    
+                    draw(ctx) {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
+                    }
+                }
+
+                for (let i = 0; i < maxParticles; i++) {
+                    particles.push(new Particle());
+                }
+
+                function animateParticles() {
+                    pCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+                    
+                    // Consider scroll position since mouse.y is client-relative but canvas might be scrolled
+                    // The particles canvas is fixed/absolute in the hero, which is mostly at top. 
+                    // To be safe, we'll just use mouse.y + window.scrollY for absolute, or just mouse.y if canvas is fixed.
+                    // Wait, hero-canvas is inside a fixed container. So mouse.y is correct!
+                    
+                    for (let i = 0; i < particles.length; i++) {
+                        particles[i].update();
+                        particles[i].draw(pCtx);
+                        
+                        // Connect to mouse
+                        const mx = mouse.x;
+                        const my = mouse.y;
+                        const dxMouse = particles[i].x - mx;
+                        const dyMouse = particles[i].y - my;
+                        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+                        
+                        if (distMouse < 300) {
+                            pCtx.beginPath();
+                            pCtx.strokeStyle = `${particles[i].color}${Math.floor((1 - distMouse/300) * 200).toString(16).padStart(2, '0')}`;
+                            pCtx.lineWidth = 2.0;
+                            pCtx.moveTo(particles[i].x, particles[i].y);
+                            pCtx.lineTo(mx, my);
+                            pCtx.stroke();
+                            
+                            // Slight repel
+                            particles[i].x += dxMouse * 0.02;
+                            particles[i].y += dyMouse * 0.02;
+                        }
+
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 220) {
+                                pCtx.beginPath();
+                                pCtx.strokeStyle = `${particles[i].color}${Math.floor((1 - dist/220) * 255).toString(16).padStart(2, '0')}`;
+                                pCtx.lineWidth = 1.0;
+                                pCtx.moveTo(particles[i].x, particles[i].y);
+                                pCtx.lineTo(particles[j].x, particles[j].y);
+                                pCtx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animateParticles);
+                }
+                animateParticles();
+            }
+
+            if (heroCanvas) {
+                const context = heroCanvas.getContext('2d');
+                context.imageSmoothingEnabled = true;
+                context.imageSmoothingQuality = 'high';
+                const frameCount = 120;
+                const currentFrame = index => `assets/frame/frame1/frame_${index.toString().padStart(4, '0')}.webp`;
+
+                const images = [];
+                for (let i = 0; i < frameCount; i++) {
+                    const img = new Image();
+                    img.src = currentFrame(i);
+                    images.push(img);
+                    
+                    if (i === 0) {
+                        img.onload = () => {
+                            heroCanvas.width = img.width;
+                            heroCanvas.height = img.height;
+                            context.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+                            context.drawImage(img, 0, 0, heroCanvas.width, heroCanvas.height);
+                        };
+                    }
+                }
+
+                window.addEventListener('scroll', () => {
+                    const scrollTop = window.scrollY;
+                    const windowHeight = window.innerHeight;
+                    
+                    // --- NAVBAR ANIMATION LOGIC ---
+                    const navbar = document.getElementById('navbar');
+                    const navLogoLink = document.getElementById('nav-logo-link');
+                    const navLogoImg = document.getElementById('nav-logo-img');
+                    const navMenu = document.getElementById('nav-menu');
+                    
+                    if (scrollTop > 100) {
+                        // Move navbar to left
+                        navbar.classList.remove('left-1/2', '-translate-x-1/2');
+                        navbar.classList.add('left-6', 'translate-x-0');
+                        
+                        // Scrolled: Hide links and button
+                        navMenu.style.maxWidth = '0px';
+                        navMenu.style.opacity = '0';
+                        navMenu.style.gap = '0';
+                        
+                        // Turn logo white
+                        navLogoImg.style.filter = 'brightness(0) invert(1)';
+                    } else {
+                        // Return navbar to center
+                        navbar.classList.add('left-1/2', '-translate-x-1/2');
+                        navbar.classList.remove('left-6', 'translate-x-0');
+                        
+                        // Top: Normal full navbar
+                        navMenu.style.maxWidth = '800px';
+                        navMenu.style.opacity = '1';
+                        navMenu.style.gap = '2.5rem'; // gap-10 is 2.5rem
+                        
+                        navLogoImg.style.filter = 'none';
+                    }
+                    // --- END NAVBAR LOGIC ---
+                    
+                    // Video finishes playing frames exactly when the Stats section is fully in view (~1.2 screen heights)
+                    const frameMaxScroll = windowHeight * 1.2;
+                    let frameFraction = scrollTop / frameMaxScroll;
+                    frameFraction = Math.max(0, Math.min(1, frameFraction));
+                    
+                    const frameIndex = Math.min(
+                        frameCount - 1,
+                        Math.floor(frameFraction * frameCount)
+                    );
+                    
+                    const revealText = document.getElementById('reveal-text');
+                    let rawWordsToReveal = 0;
+                    
+                    if (revealText) {
+                        const words = revealText.querySelectorAll('.reveal-word');
+                        const totalWords = words.length;
+                        
+                        const rect = revealText.getBoundingClientRect();
+                        // Stretch out the reveal distance to make it slower and more noticeable
+                        const start = windowHeight * 0.95; 
+                        const end = windowHeight * 0.15;
+                        
+                        let progress = 1 - (rect.top - end) / (start - end);
+                        progress = Math.max(0, Math.min(1, progress));
+                        
+                        rawWordsToReveal = progress * totalWords;
+                    }
+                    
+                    // Video fade calculation
+                    const fadeMaxScroll = windowHeight * 2.2;
+                    let fadeFraction = scrollTop / fadeMaxScroll;
+                    const canvasOpacity = 1 - fadeFraction;
+                    
+                    requestAnimationFrame(() => {
+                        if (images[frameIndex] && images[frameIndex].complete) {
+                            context.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+                            context.drawImage(images[frameIndex], 0, 0, heroCanvas.width, heroCanvas.height);
+                        }
+                        
+                        // Apply video fade
+                        heroCanvas.style.opacity = Math.max(0, canvasOpacity);
+                        
+                        if (revealText) {
+                            const words = revealText.querySelectorAll('.reveal-word');
+                            words.forEach((word, index) => {
+                                if (index < Math.floor(rawWordsToReveal)) {
+                                    word.style.opacity = '1';
+                                } else if (index === Math.floor(rawWordsToReveal)) {
+                                    const fraction = rawWordsToReveal - index;
+                                    word.style.opacity = (0.3 + 0.7 * fraction).toString();
+                                } else {
+                                    word.style.opacity = '0.3';
+                                }
+                            });
+                        }
+                    });
+                });
+            }
+
+            const banner = document.getElementById('angled-banner');
+            const heroSection = document.getElementById('hero-section');
+            
+            if (banner && heroSection) {
+                heroSection.addEventListener('mousemove', (e) => {
+                    // Only apply on desktop
+                    if (window.innerWidth < 1024) return;
+                    
+                    const rect = heroSection.getBoundingClientRect();
+                    // Calculate mouse position relative to center of screen (-1 to 1)
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    
+                    // Limit rotation angles for a subtle effect
+                    const rotateY = -30 + (x * 15); // Base -30deg + movement
+                    const rotateX = y * -10;
+                    
+                    banner.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateZ(0)`;
+                });
+                
+                heroSection.addEventListener('mouseleave', () => {
+                });
+            }
+
+            // --- 3D Biz Kimiz Card Logic ---
+            const bizKimizWrapper = document.getElementById('biz-kimiz-3d-wrapper');
+            const bizKimizCard = document.getElementById('biz-kimiz-3d-card');
+
+            if (bizKimizWrapper && bizKimizCard) {
+                document.addEventListener('mousemove', (e) => {
+                    // Only apply 3D effect on desktop sizes
+                    if (window.innerWidth < 1024) return;
+                    
+                    // Calculate mouse position relative to the center of the ENTIRE SCREEN (-1 to 1)
+                    const x = (e.clientX / window.innerWidth) - 0.5;
+                    const y = (e.clientY / window.innerHeight) - 0.5;
+                    
+                    // Rotate based on mouse position on screen
+                    const rotateY = x * 30; // Max 15 deg left/right
+                    const rotateX = y * -30; // Max 15 deg up/down
+                    
+                    bizKimizCard.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Stats & Button Intersection Observer
+            const statsCards = document.querySelectorAll('.stat-card');
+            const contactBtn = document.getElementById('contact-btn');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const statsObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Element is in view, trigger animation!
+                        entry.target.classList.remove('opacity-0', 'translate-y-12', 'translate-y-8');
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+            
+            statsCards.forEach(card => statsObserver.observe(card));
+            if (contactBtn) statsObserver.observe(contactBtn);
+
+            // New Biz Kimiz section observers
+            const bizKimizAnims = document.querySelectorAll('.biz-kimiz-anim');
+            const bizKimizCards = document.querySelectorAll('.biz-kimiz-card');
+            bizKimizAnims.forEach(el => statsObserver.observe(el));
+            bizKimizCards.forEach(el => statsObserver.observe(el));
+
+            // PECB section observers
+            const pecbCards = document.querySelectorAll('.pecb-card');
+            pecbCards.forEach(el => statsObserver.observe(el));
+
+            // Text reveal initial setup
+            const revealText = document.getElementById('reveal-text');
+            if (revealText) {
+                const text = revealText.getAttribute('data-text');
+                if (text) {
+                    const words = text.split(' ');
+                    revealText.innerHTML = words.map(w => `<span class="reveal-word" style="opacity: 0.3">${w}</span>`).join(' ');
+                }
+            }
+
+            const container = document.getElementById('icon-container');
+            if (container) {
+                // Loop through 1 to 90 to load icons
+                let htmlContent = '';
+                for(let i=1; i<=90; i++) {
+                    htmlContent += `<img src="assets/icon/Kurumsal-Gelisim-Egitimleri-Yazilim-Egitimleri-${i}.jpg" class="h-12 w-auto object-contain rounded opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 cursor-pointer" onerror="this.style.display='none'">`;
+                }
+                
+                // Duplicate the content so the infinite scroll is seamless
+                container.innerHTML = htmlContent + htmlContent;
+            }
+        });
+    </script>
+
+    <script>
+        // --- HERO SLIDER LOGIC ---
+        let currentHeroSlide = 0;
+        let heroSlideInterval;
+        
+        function goToSlide(n) {
+            const slides = document.querySelectorAll('.slide-item');
+            const dots = document.querySelectorAll('.slide-dot');
+            if(slides.length === 0) return;
+
+            const totalUniqueSlides = slides.length > 4 ? 4 : slides.length;
+
+            // Old slide out
+            for (let i = 0; i < slides.length; i += totalUniqueSlides) {
+                if(slides[currentHeroSlide + i]) {
+                    slides[currentHeroSlide + i].classList.remove('opacity-100', 'z-10');
+                    slides[currentHeroSlide + i].classList.add('opacity-0', 'z-0');
+                }
+                if(dots[currentHeroSlide + i]) {
+                    dots[currentHeroSlide + i].classList.remove('opacity-100', 'scale-110');
+                    dots[currentHeroSlide + i].classList.add('opacity-40');
+                }
+            }
+            
+            currentHeroSlide = (n + totalUniqueSlides) % totalUniqueSlides;
+            
+            // New slide in
+            for (let i = 0; i < slides.length; i += totalUniqueSlides) {
+                if(slides[currentHeroSlide + i]) {
+                    slides[currentHeroSlide + i].classList.remove('opacity-0', 'z-0');
+                    slides[currentHeroSlide + i].classList.add('opacity-100', 'z-10');
+                }
+                if(dots[currentHeroSlide + i]) {
+                    dots[currentHeroSlide + i].classList.remove('opacity-40');
+                    dots[currentHeroSlide + i].classList.add('opacity-100', 'scale-110');
+                }
+            }
+        }
+
+        function nextHeroSlide() {
+            goToSlide(currentHeroSlide + 1);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if(document.querySelector('.slide-item')) {
+                heroSlideInterval = setInterval(nextHeroSlide, 5000);
+                
+                const sliderContainer = document.getElementById('angled-banner');
+                if(sliderContainer) {
+                    sliderContainer.addEventListener('mouseenter', () => clearInterval(heroSlideInterval));
+                    sliderContainer.addEventListener('mouseleave', () => {
+                        heroSlideInterval = setInterval(nextHeroSlide, 5000);
+                    });
+                }
+            }
+        });
+    </script>
+    
+    <script>
+        // --- FULLSCREEN MENU LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const fullscreenMenu = document.getElementById('fullscreen-menu');
+            const closeMenuBtn = document.getElementById('close-menu');
+            const menuLinks = fullscreenMenu.querySelectorAll('.menu-link');
+            const menuRightContent = fullscreenMenu.querySelector('.menu-right-content');
+            const navLogoLink = document.getElementById('nav-logo-link');
+
+            // Open menu when clicking the logo wrapper on desktop
+            if (navLogoLink) {
+                navLogoLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Open menu
+                    fullscreenMenu.classList.remove('opacity-0', 'pointer-events-none');
+                    fullscreenMenu.classList.add('opacity-100', 'pointer-events-auto');
+                    
+                    // Animate links in (wait slightly for the panel to fade in)
+                    setTimeout(() => {
+                        menuLinks.forEach(link => {
+                            link.classList.remove('opacity-0', 'translate-y-8');
+                            link.classList.add('opacity-100', 'translate-y-0', 'duration-700');
+                        });
+                        
+                        // Animate right content in
+                        if(menuRightContent) {
+                            menuRightContent.classList.remove('opacity-0', 'translate-y-12');
+                            menuRightContent.classList.add('opacity-100', 'translate-y-0');
+                        }
+                    }, 300);
+                });
+            }
+
+            // Close menu function
+            const closeMenu = () => {
+                fullscreenMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                fullscreenMenu.classList.add('opacity-0', 'pointer-events-none');
+                
+                // Reset animations instantly so they are ready for next open
+                setTimeout(() => {
+                    menuLinks.forEach(link => {
+                        link.classList.remove('opacity-100', 'translate-y-0', 'duration-700');
+                        link.classList.add('opacity-0', 'translate-y-8');
+                    });
+                    
+                    if(menuRightContent) {
+                        menuRightContent.classList.remove('opacity-100', 'translate-y-0');
+                        menuRightContent.classList.add('opacity-0', 'translate-y-12');
+                    }
+                }, 700);
+            };
+
+            if (closeMenuBtn) {
+                closeMenuBtn.addEventListener('click', closeMenu);
+            }
+            
+            // Close menu if a link is clicked
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        });
+        // --- END FULLSCREEN MENU LOGIC ---
+        // --- HERO SEARCH LOGIC ---
+        const heroSearch = document.getElementById('hero-search');
+        const searchSuggestions = document.getElementById('search-suggestions');
+        const searchTerms = document.querySelectorAll('.search-term');
+        
+        if (heroSearch && searchSuggestions) {
+            heroSearch.addEventListener('focus', () => {
+                searchSuggestions.classList.remove('opacity-0', 'invisible');
+                searchSuggestions.classList.add('opacity-100', 'visible');
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!heroSearch.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                    searchSuggestions.classList.remove('opacity-100', 'visible');
+                    searchSuggestions.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            searchTerms.forEach(term => {
+                term.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    heroSearch.value = term.getAttribute('data-term');
+                    // Optionally keep focus on input or let it blur
+                    heroSearch.focus();
+                });
+            });
+        }
+        // --- END HERO SEARCH LOGIC ---
+
+        // --- TIMELINE SCROLL LOGIC ---
+        const tlContainer = document.getElementById('timeline-container');
+        const tlProgress = document.getElementById('timeline-progress');
+        const tlNodes = document.querySelectorAll('.timeline-node');
+        
+        if (tlContainer && tlProgress) {
+            window.addEventListener('scroll', () => {
+                const rect = tlContainer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // We want the line to start drawing when the top of the container hits the middle of the screen
+                const scrollPosition = (windowHeight / 2) - rect.top; 
+                let percentage = (scrollPosition / rect.height) * 100;
+                percentage = Math.max(0, Math.min(100, percentage));
+                tlProgress.style.height = percentage + '%';
+                
+                // Color nodes based on progress line reaching them
+                tlNodes.forEach(node => {
+                    const nodeRect = node.getBoundingClientRect();
+                    const progressRect = tlProgress.getBoundingClientRect();
+                    
+                    // The row containing this node and its cards
+                    const stepRow = node.closest('.relative.flex');
+                    const animEls = stepRow ? stepRow.querySelectorAll('.timeline-anim') : [];
+                    
+                    // If bottom of progress line is below the center of the node
+                    if (progressRect.bottom > nodeRect.top + (nodeRect.height/2)) {
+                        node.classList.remove('border-[#234190]');
+                        node.classList.add('border-[#CD4799]');
+                        
+                        // Reveal cards
+                        animEls.forEach(el => {
+                            el.classList.remove('opacity-0', 'translate-y-12');
+                            el.classList.add('opacity-100', 'translate-y-0');
+                        });
+                    } else {
+                        node.classList.add('border-[#234190]');
+                        node.classList.remove('border-[#CD4799]');
+                        
+                        // Hide cards (if scrolling back up)
+                        animEls.forEach(el => {
+                            el.classList.add('opacity-0', 'translate-y-12');
+                            el.classList.remove('opacity-100', 'translate-y-0');
+                        });
+                    }
+                });
+            });
+            // Initial call to set correct state on load
+            window.dispatchEvent(new Event('scroll'));
+        }
+        
+        // --- STICKY GALLERY LOGIC ---
+        const galleryWrapper = document.getElementById('gallery-wrapper');
+        const galleryText = document.getElementById('gallery-text');
+        const galleryCards = document.querySelectorAll('.gallery-card');
+
+        if (galleryWrapper && galleryText && galleryCards.length > 0) {
+            window.addEventListener('scroll', () => {
+                const rect = galleryWrapper.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Calculate scroll progress from 0 to 1
+                // The pinning happens when rect.top <= 0, and ends when rect.bottom <= windowHeight
+                let progress = 0;
+                
+                if (rect.top <= 0) {
+                    const totalScrollDistance = rect.height - windowHeight;
+                    const currentScroll = Math.abs(rect.top);
+                    progress = currentScroll / totalScrollDistance;
+                }
+                
+                progress = Math.max(0, Math.min(1, progress));
+                
+                // 1. Animate text background-position (0% to 100% on the Y axis)
+                galleryText.style.backgroundPosition = `0% ${progress * 100}%`;
+                
+                // 2. Animate cards revealing
+                // We have 4 cards. We reveal them at progress > 0.1, 0.35, 0.6, 0.85
+                const thresholds = [0.1, 0.35, 0.6, 0.85];
+                
+                galleryCards.forEach((card, index) => {
+                    if (progress > thresholds[index]) {
+                        card.classList.remove('opacity-0', 'translate-y-24', 'md:translate-y-24');
+                        card.classList.add('opacity-100', 'translate-y-0');
+                    } else {
+                        card.classList.add('opacity-0', 'translate-y-24', 'md:translate-y-24');
+                        card.classList.remove('opacity-100', 'translate-y-0');
+                    }
+                });
+            });
+            // Initial call to set correct state on load
+            window.dispatchEvent(new Event('scroll'));
+        }
+    </script>
+</body>
+</html>
