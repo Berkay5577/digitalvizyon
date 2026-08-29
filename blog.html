@@ -789,7 +789,7 @@
                             megaBlob.classList.add('bg-white/40', 'backdrop-blur-2xl');
                         }
                         if(gooeyContainer) {
-                            gooeyContainer.style.filter = 'none';
+                            gooeyContainer.style.filter = 'url(#goo)'; gooeyContainer.style.opacity = '0.85';
                         }
                         navbar.style.transform = 'translateY(-100%)';
                         
@@ -807,7 +807,7 @@
                             megaBlob.classList.add('bg-white/90');
                         }
                         if(gooeyContainer) {
-                            gooeyContainer.style.filter = 'url(#goo)';
+                            gooeyContainer.style.filter = 'url(#goo)'; gooeyContainer.style.opacity = '1';
                         }
                         navbar.style.transform = 'translateY(0)';
                         
