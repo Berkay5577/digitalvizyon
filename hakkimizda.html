@@ -179,7 +179,7 @@
                 <!-- Mega Menu Content (No background, just content!) -->
                 <div id="mega-content" class="absolute top-[80%] left-1/2 -translate-x-1/2 pt-4 opacity-0 translate-y-4 pointer-events-none transition-all duration-500 ease-out z-50">
                     
-                    <div class="w-[850px] p-8 cursor-default text-left relative overflow-hidden transition-all duration-500 delay-200">
+                    <div class="w-[850px] px-12 py-10 cursor-default text-left relative overflow-hidden transition-all duration-500 delay-200">
                         
                         <!-- Search Bar -->
                         <div class="relative mb-8 z-10">
@@ -1244,12 +1244,21 @@
         
         if (megaTrigger && megaBlob && megaContent) {
             megaTrigger.addEventListener('mouseenter', () => {
+                const triggerRect = megaTrigger.getBoundingClientRect();
+                const navRect = document.getElementById('navbar').getBoundingClientRect();
+                // Center of the text relative to navbar
+                const centerX = triggerRect.left + (triggerRect.width / 2) - navRect.left;
+                
+                // Align blob exactly with the content
+                megaBlob.style.left = centerX + 'px';
+                
                 // Blob morphs into the mega menu background
+                // Make it slightly larger than 850x350 to compensate for gooey shrink
                 megaBlob.style.opacity = '1';
-                megaBlob.style.top = '70px';
-                megaBlob.style.width = '850px';
-                megaBlob.style.height = '350px';
-                megaBlob.style.borderRadius = '2rem';
+                megaBlob.style.top = '65px';
+                megaBlob.style.width = '900px'; 
+                megaBlob.style.height = '380px';
+                megaBlob.style.borderRadius = '2.5rem';
                 
                 // Show content slightly after
                 setTimeout(() => {
@@ -1266,11 +1275,11 @@
                 // Blob sucks back up like liquid
                 megaBlob.style.width = '40px';
                 megaBlob.style.height = '40px';
-                megaBlob.style.top = '0px';
+                megaBlob.style.top = '10px';
                 megaBlob.style.borderRadius = '9999px';
                 setTimeout(() => {
                     megaBlob.style.opacity = '0';
-                }, 500);
+                }, 400);
             });
         }
 
